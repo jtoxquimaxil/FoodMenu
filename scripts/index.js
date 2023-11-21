@@ -1,21 +1,23 @@
-"use script";
+"use strict";
 
-const menu = {
-    drinks : [
-     "Water", "Tea", "Sweet Tea", 
-     "Coke", "Dr. Pepper", "Sprite"
-     ],
-    entrees : [
-    "Hamburger w/ Fries", 
-     "Grilled Cheese w/ Tater Tots",
-    "Grilled Chicken w/ Veggies", 
-     "Chicken Fried Steak w/ Mashed Potatoes",
-    "Fried Shrimp w/ Coleslaw", 
-     "Veggie Plate"
-    ],
-    desserts: [
-     "Cheesecake", "Chocolate Cake", "Snickerdoodle Cookie"
-     ]
-    };
+window.onload = function () {
+    const foodSelection = document.getElementById("foodSelection");
+    const foodItems = document.getElementById("foodItems");
 
-    document.getElementById("foodSelection")
+    function foodSection(category) {
+        const selectedCategory = menu[category];
+
+        foodItems.innerHTML = "";
+
+        selectedCategory.forEach(item => {
+            const option = document.createElement("option");
+            option.textContent = item;
+            foodItems.appendChild(option);
+        });
+    }
+
+    foodSelection.addEventListener("change", function () {
+        const selectedCategory = foodSelection.value;
+        foodSection(selectedCategory);
+    });
+};
